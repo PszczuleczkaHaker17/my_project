@@ -2,19 +2,15 @@
 import { ref } from 'vue';
 import { my_project_backend } from 'declarations/my_project_backend/index';
 
-let greeting = ref('');
 const rates = ref([])
 
 const getDataFromNBP = async () => {
-
-    const res = await fetch("https://api.nbp.pl/api/exchangerates/tables/A/?format=json");
-    const jsonData = await res.json();
-    console.log(jsonData);
-    
-    console.log(rates)
-    rates.value = jsonData[0].rates
+  const res = await fetch("https://api.nbp.pl/api/exchangerates/tables/A/?format=json")
+  const jsonData = await res.json();
+  rates.value = jsonData[0].rates
 }
-getDataFromNBP();
+
+getDataFromNBP()
 </script>
 
 <template>
@@ -22,15 +18,13 @@ getDataFromNBP();
     <img src="/logo2.svg" alt="DFINITY logo" />
     <br />
     <br />
-    <br />
-  
     <table>
       <tr>
-        <th>Nazwa</th>
-        <th>Kod</th>
-        <th>cena</th>
+        <th>Nazwa waluty</th>
+        <th>Kod waluty</th>
+        <th>Cena</th>
       </tr>
-      <tr v v-for="rate in rates">
+      <tr v-for="rate in rates">
         <td>{{ rate.currency }}</td>
         <td>{{ rate.code }}</td>
         <td>{{ rate.mid }}</td>
