@@ -10,7 +10,7 @@ const getDataFromNBP = async () => {
     const res = await fetch("https://api.nbp.pl/api/exchangerates/tables/A/?format=json");
     const jsonData = await res.json();
     console.log(jsonData);
-    const rates = jsonData[0].rates
+    
     console.log(rates)
     rates.value = jsonData[0].rates
 }
@@ -23,6 +23,18 @@ getDataFromNBP();
     <br />
     <br />
     <br />
-    {{rates}}
+  
+    <table>
+      <tr>
+        <th>Nazwa</th>
+        <th>Kod</th>
+        <th>cena</th>
+      </tr>
+      <tr v v-for="rate in rates">
+        <td>{{ rate.currency }}</td>
+        <td>{{ rate.code }}</td>
+        <td>{{ rate.mid }}</td>
+      </tr>
+    </table>
   </main>
 </template>
