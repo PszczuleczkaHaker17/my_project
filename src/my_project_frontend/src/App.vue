@@ -8,7 +8,7 @@ const getDataFromNBP = async () => {
   try {
     const res = await fetch("https://api.nbp.pl/api/exchangerates/tables/A/?format=json");
     if (!res.ok) {
-      throw new Error(HTTP error! status: ${res.status});
+      throw new Error(`HTTP error! status: ${res.status}`);
     }
     const jsonData = await res.json();
     console.log(jsonData);
@@ -16,6 +16,7 @@ const getDataFromNBP = async () => {
     console.error('Error fetching data from NBP:', error);
   }
 };
+
 
 getDataFromNBP();
 </script>
